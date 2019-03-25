@@ -1,8 +1,9 @@
-const spawn = require('child_process').spawn;
-const EventEmitter = require('events').EventEmitter;
-const util = require('util');
+'use strict';
 
-const reservedEvents = {
+var spawn = require('child_process').spawn;
+var EventEmitter = require('events').EventEmitter;
+var util = require('util');
+var reservedEvents = {
   close: true,
   error: true,
   data: true,
@@ -13,73 +14,77 @@ const reservedEvents = {
   pipe: true,
   unpipe: true
 };
-
-function PocketSphinxContinuous(config) {
+var pc=null;
+var self;
+function PocketSphinxContinuous(config)  {
+	self=this;
   this.setId = config.setId;
   this.verbose = config.verbose;
   this.microphone = config.microphone;
-  this.autostart = config.autostart;
-
-  if (!config.hasOwnProperty('autostart') || config.autostart === true) {
-    this.start();
+	this.startListening= startListening;
+	this.stopListening= stopListening;
+	this.isListening= getStatus;
+  if(config.autostart == undefined || config.autostart==true)
+  {
+    startListening()
   }
-
   EventEmitter.call(this);
 }
 
-PocketSphinxContinuous.prototype.start = function() {
-  if (!this.isListening()) {
-    this._psc = spawn('pocketsphinx_continuous', [
+function startListening(){  
+
+  if(pc==null){
+    pc = spawn('pocketsphinx_continuous', [
       '-adcdev',
-      `plughw:${this.microphone}`,
+      'plughw:' + self.microphone,
       '-inmic',
       'yes',
       '-lm',
-      `modules/${this.setId}/${this.setId}.lm`,
+      'modules/MMM-VoiceCommander/' + self.setId + '.lm',
       '-dict',
-      `modules/${this.setId}/${this.setId}.dic`
+      'modules/MMM-VoiceCommander/' + self.setId + '.dic'
     ]);
+    var psc = self;
 
-    this._psc.stdout.on('data', data => {
-      const output = data.toString().trim();
+    pc.stdout.on('data', function(data) {
+      var output = data.toString().trim();
       if (output) {
-        this.emit('data', output);
+        psc.emit('data', output);
       }
       // Also try to emit an event for the actual data, unless of course the
       // event is a reserved one.
-      const eventName = output.toLowerCase();
+      var eventName = output.toLowerCase();
       if (!reservedEvents[eventName]) {
-        this.emit(eventName, output);
+        psc.emit(eventName, output)
       }
     });
-
-    this._psc.stderr.on('data', data => {
-      const output = data.toString().trim();
-      if (this.verbose && output) {
-        this.emit('debug', data);
+    pc.stderr.on('data', function(data) {
+      var output = data.toString().trim();
+      if (config.verbose && output) {
+        psc.emit('debug', data);
       }
     });
-
-    this._psc.on('close', code => {
-      this.emit('error', code);
+    pc.on('close', function(code) {
+      psc.emit('error', code);
     });
-
-    this._psc.on('error', err => {
-      this.emit('error', err);
-    });
+    pc.on('error', function(err) {
+      psc.emit('error', err);
+    })
   }
-};
+}
 
-PocketSphinxContinuous.prototype.stop = function() {
-  if (this.isListening()) {
-    this._psc.kill();
-  }
-};
+function stopListening(){
+    if(pc!=null){
+      pc.kill();
+      pc=null;
+    }
+        
+}
 
-PocketSphinxContinuous.prototype.isListening = function() {
-  return this._psc && !this._psc.killed;
-};
+function getStatus(){
+    return pc!=null;  
+}
 
-util.inherits(PocketSphinxContinuous, EventEmitter);
+util.inherits(PocketSphinxContinuous , EventEmitter);
 
 module.exports = PocketSphinxContinuous;

@@ -1,0 +1,9 @@
+*.log
+npm-debug.log*
+node_modules/
+.idea/
+docs/
+*.dic
+*.lm
+words.json
+package-lock.json

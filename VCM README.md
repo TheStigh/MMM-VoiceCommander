@@ -49,7 +49,7 @@
 
 
 ## Config.js entry and options
-
+```
 {
     disabled: false,
     module: "MMM-VoiceCommander",
@@ -86,7 +86,7 @@
 		pageTenModules: []                          // modules to show on page ten
     }
 },
-
+```
 ## Default modules and their commands
 
 ### [MMM-VoiceCommander](https://github.com/TheStigh/MMM-VoiceCommander)

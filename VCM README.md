@@ -60,32 +60,32 @@
         keyword: 'HELLO LUCY',                      // keyword to activate listening for a command/sentence
         debug: false,                               // get debug information in console
         standByMethod: 'DPMS',                      // 'DPMS' = anything else than RPi or 'PI'
-		sounds: ["female_hi.wav"],                  // welcome sound at startup, add several for a random choice of welcome sounds
+		sounds: ["female_hi.wav"],                  // welcome sound at startup, add several for a random welcome sounds
         startHideAll: true,                         // if true, all modules start as hidden
         microphone: 0,                              // Please set correct microphone from the cat output after installation
         speed: 1000,                                // transition speed between show/no-show/show in milliseconds
         activateMotion: false,                      // if true, webcam will be used to activate/deactivate MM on movement
         onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
         timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
-		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds, default 1 second
+		captureIntervalTime: 1000,                  // how often webcam checkS for motion, in milliseconds, default 1 second
         scoreThreshold: 20,                         // threshold to assume motion/no-motion -> see console log for score
-        timeoutMotion: 120000,                      // timeout with no motion until sleep monitor, in milliseconds, default 2 minutes
+        timeoutMotion: 120000,                      // time with no motion until sleep monitor, in ms, default 2 minutes
         muteThreshold: 2000,                        // motion level to activate mute of speaker
         muteVolumeLevel: 1,                         // what volume level to set speaker on activated mute
         muteNormalLevel: 50,                        // set normal volume level on startup
         muteTimer: 10000,                           // how long in milliseconds to mute the speaker
 		mainPageModules: ["MMM-VoiceCommander"],    // default modules to show on page one/startup
         pageTwoModules: [],                         // modules to show on page two
-		pageThreeModules: [],                       // modules to show on page two
-		pageFourModules: [],                        // modules to show on page two
-		pageFiveModules: [],                        // modules to show on page two
-		pageSixModules: [],                         // modules to show on page two
-		pageSevenModules: [],                       // modules to show on page two
-		pageEightModules: [],                       // modules to show on page two
-		pageNineModules: [],                        // modules to show on page two
-		pageTenModules: []                          // modules to show on page two
-           }
-    },
+		pageThreeModules: [],                       // modules to show on page three
+		pageFourModules: [],                        // modules to show on page four
+		pageFiveModules: [],                        // modules to show on page five
+		pageSixModules: [],                         // modules to show on page six
+		pageSevenModules: [],                       // modules to show on page seven
+		pageEightModules: [],                       // modules to show on page eight
+		pageNineModules: [],                        // modules to show on page nine
+		pageTenModules: []                          // modules to show on page ten
+    }
+},
 
 ## Default modules and their commands
 

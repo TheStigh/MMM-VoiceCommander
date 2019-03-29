@@ -76,14 +76,14 @@
         muteTimer: 10000,                           // how long in milliseconds to mute the speaker
 	mainPageModules: ["MMM-VoiceCommander"],    // default modules to show on page one/startup
         pageTwoModules: [],                         // modules to show on page two
-		pageThreeModules: [],                       // modules to show on page three
-		pageFourModules: [],                        // modules to show on page four
-		pageFiveModules: [],                        // modules to show on page five
-		pageSixModules: [],                         // modules to show on page six
-		pageSevenModules: [],                       // modules to show on page seven
-		pageEightModules: [],                       // modules to show on page eight
-		pageNineModules: [],                        // modules to show on page nine
-		pageTenModules: []                          // modules to show on page ten
+	pageThreeModules: [],                       // modules to show on page three
+	pageFourModules: [],                        // modules to show on page four
+	pageFiveModules: [],                        // modules to show on page five
+	pageSixModules: [],                         // modules to show on page six
+	pageSevenModules: [],                       // modules to show on page seven
+	pageEightModules: [],                       // modules to show on page eight
+	pageNineModules: [],                        // modules to show on page nine
+	pageTenModules: []                          // modules to show on page ten
     }
 },
 ```

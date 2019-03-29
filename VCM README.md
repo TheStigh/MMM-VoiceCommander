@@ -1,17 +1,17 @@
 # MMM-VoiceCommander
 
+![](VCLogo.jpg)
+
+## What can it do?
+
 * Control other modules that use voice commands with a single microphone.
-
-* Built in motion detection for webcams. Puts your display to sleep or wakes it up.
-
-* Built in support for sound files for audio responses.
-
+* Built in motion detection for webcams.
+* Use hand gesture to mute/resume sound to issue new voice commands. (Requires cam)
+* Take Selfies!  (Requires - https://github.com/alexyak/camera)
+* Built in support for custom sound files.
 * Hide and show pages of modules.
-
 * Hide and show individual modules.
-
 * No modification of other modules necessary.
-
 * Offline by default. Online by controlling other modules. (Ex. AssistantMk2)
 
 
@@ -19,13 +19,23 @@
 
 * @sdetweil added crucial microphone release functionality to the module.
 * @Mykle1's original pages and hide/show commands were improved upon and custom sound support.
-* @cowboysdude for the "sentences" array and consultations on Skype.
+* @cowboysdude for his array magic and Skype consultations.
 
 ## Inspirations
 
 * MMM-voice by Strawberry 3.141
 * motiondetector, camera by alexyak
 * Hello-Lucy by Mykle1
+
+## Tested On
+
+* HP Elite 8300 - Ubuntu 18.04 LTS
+* HP Elite HPEu - Ubuntu 16.04 LTS
+* HP G60 Laptop - Ubuntu 16.04 LTS
+* AMD64 - Ubuntu 16.04/18.04
+* Tinker Board S - TinkerOS 2.0.8
+* USB Logitech C920
+* Several integrated laptop cams
 
 ## Installation and requirements
 
@@ -40,27 +50,40 @@
 
 ## Config.js entry and options
 
-    {
+{
     disabled: false,
     module: "MMM-VoiceCommander",
     position: "top_center",
     config: {
-      keyword: 'HELLO LUCY', // must use capital letters
-      microphone: 0, // Please set correct microphone from the cat output after installation
-      activateMotion: false, // true if you have a webcam and want motion detection
-      standByMethod: 'DPMS', // 
-      sounds: ["female_hi.wav"], // add sound files (comma separated) for random greetings
-      startHideAll: true, // hides all modules at startup EXCEPT mainPageModules
-          mainPageModules: ["MMM-VoiceCCommander"], // add modules in quotes and comma separated 
-          pageTwoModules: [],     // add modules in quotes and comma separated 
-          pageThreeModules: [],   // add modules in quotes and comma separated
-          pageFourModules: [],    // add modules in quotes and comma separated
-          pageFiveModules: [],    // add modules in quotes and comma separated
-          pageSixModules: [],     // add modules in quotes and comma separated
-          pageSevenModules: [],   // add modules in quotes and comma separated
-          pageEightModules: [],   // add modules in quotes and comma separated
-          pageNineModules: [],    // add modules in quotes and comma separated
-          pageTenModules: [],     // add modules in quotes and comma separated
+        timeout: 10,                                // timeout listening for a command/sentence
+        defaultOnStartup: 'MMM-VoiceCommander',     // keep this so this module is always present on MM
+        keyword: 'HELLO LUCY',                      // keyword to activate listening for a command/sentence
+        debug: false,                               // get debug information in console
+        standByMethod: 'DPMS',                      // 'DPMS' = anything else than RPi or 'PI'
+		sounds: ["female_hi.wav"],                  // welcome sound at startup, add several for a random choice of welcome sounds
+        startHideAll: true,                         // if true, all modules start as hidden
+        microphone: 0,                              // Please set correct microphone from the cat output after installation
+        speed: 1000,                                // transition speed between show/no-show/show in milliseconds
+        activateMotion: false,                      // if true, webcam will be used to activate/deactivate MM on movement
+        onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
+        timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
+		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds, default 1 second
+        scoreThreshold: 20,                         // threshold to assume motion/no-motion -> see console log for score
+        timeoutMotion: 120000,                      // timeout with no motion until sleep monitor, in milliseconds, default 2 minutes
+        muteThreshold: 2000,                        // motion level to activate mute of speaker
+        muteVolumeLevel: 1,                         // what volume level to set speaker on activated mute
+        muteNormalLevel: 50,                        // set normal volume level on startup
+        muteTimer: 10000,                           // how long in milliseconds to mute the speaker
+		mainPageModules: ["MMM-VoiceCommander"],    // default modules to show on page one/startup
+        pageTwoModules: [],                         // modules to show on page two
+		pageThreeModules: [],                       // modules to show on page two
+		pageFourModules: [],                        // modules to show on page two
+		pageFiveModules: [],                        // modules to show on page two
+		pageSixModules: [],                         // modules to show on page two
+		pageSevenModules: [],                       // modules to show on page two
+		pageEightModules: [],                       // modules to show on page two
+		pageNineModules: [],                        // modules to show on page two
+		pageTenModules: []                          // modules to show on page two
            }
     },
 
@@ -70,7 +93,7 @@
 
 * Hello Lucy (Replace Hello Lucy with your keyword)
 * Go Online (Must have MMM-AssistantMk2 installed)
-* Activate Assistant (Must have MMM-AssistantMk2 installed)
+* Activate Assistant (To be implemented - Must have MMM-AssistantMk2 installed)
 * Show Assistant
 * Hide Assistant
 * Go To Sleep
@@ -89,11 +112,13 @@
 * Show Page Ten
 * Show Modules
 * Hide Modules
-* Show Camera
-* Hide Camera
-* Selfie
+* Show Camera - relies on (https://github.com/alexyak/camera)
+* Hide Camera - relies on (https://github.com/alexyak/camera)
+* Selfie - relies on (https://github.com/alexyak/camera)
                        
-### [MMM-WindyV2](https://github.com/TheStigh/MMM-WindyV2)
+### [MMM-WindyV2](https://github.com/TheStigh/MMM-WindyV2)(Requires MMM-WindyV2)
+
+#### Requires installation of MMM-WindyV2
 
 * Hide Wind
 * Show Wind
@@ -115,7 +140,7 @@
 
 * Click [here](https://github.com/eouia/MMM-AssistantMk2) for the repo and documentation.
 
-### Hide/Show Default Modules
+### Hide/Show Supported Modules
 
 * [MMM-AfterShip](https://github.com/mykle1/MMM-AfterShip) - Hide/Show Shipping
 * [MMM-ATM](https://github.com/mykle1/MMM-ATM) - Hide/Show Trivia
@@ -165,6 +190,12 @@
 
 ## Any module and custom commands added by request
 
-* Simply post your reqest in the MMM-VoiceCommander topic.
+* Simply post your request in the MMM-VoiceCommander topic.
 * Name the module and the custom command you would like.
+
+## Troubleshooting issues with MotionDetection
+
+Accessing your (web)cam requires to have the client run on localhost or a HTTPS host.
+This is due to new requirements in Chrome for getUserMedia. The default value in your
+MagicMirror config.js is already localhost so most users shouldn't be affected.
                 

@@ -72,12 +72,12 @@ module.exports = NodeHelper.create({
 //////////////// 	release mic from PocketSphinx		////////////////
 //////////////// 	and create timer and checking		////////////////
 ////////////////////////////////////////////////////////////////////////
-        } else if(notification === 'SUSPEND_LISTENING'){
-          if(this.ps.isListening())
-              this.ps.stopListening()
-        } else if(notification === 'RESUME_LISTENING'){
-          if(!this.ps.isListening())
-              this.ps.startListening()
+} else if(notification === 'SUSPEND_LISTENING'){
+    if(this.ps.isListening())
+        this.ps.stop()
+  } else if(notification === 'RESUME_LISTENING'){
+    if(!this.ps.isListening())
+        this.ps.start()
 			
 ////////////////////////////////// EOC /////////////////////////////////
 	
@@ -253,7 +253,7 @@ module.exports = NodeHelper.create({
 //////////////// 	release mic from PocketSphinx		////////////////
 //////////////// 	and create timer and checking		////////////////
 ////////////////////////////////////////////////////////////////////////
-        if(typeof this.ps.startListening != 'function')
+        if(typeof this.ps.start != 'function')
           console.log("downlevel pocketsphinx-continuous node module... error<===============================");
 
 ////////////////////////////////// EOC /////////////////////////////////
@@ -278,7 +278,7 @@ module.exports = NodeHelper.create({
 // er dette rett plass å sette inn?
               if (this.config.onlyHotword) { 
                   if(this.ps.isListening())
-                      this.ps.stopListening();
+                      this.ps.stop();
                   console.log("sending socket notification, have released mic");  
                   this.sendSocketNotification('SUSPENDED');
                 } 
@@ -395,7 +395,7 @@ module.exports = NodeHelper.create({
 if (/(GO)/g.test(data) && /(ONLINE)/g.test(data)) {
         //} else if (/(GO)/g.test(data) && /(ONLINE)/g.test(data)) { 
             if(this.ps.isListening())
-              this.ps.stopListening();
+              this.ps.stop();
             console.log("sending socket notification, have released mic");  
             this.sendSocketNotification('SUSPENDED');
 

@@ -252,10 +252,10 @@ Module.register('MMM-VoiceCommander', {
 		// add handlers for notifications from other modules
         // did some other module  say they were done with the mic
         } else if(notification === 'HOTWORD_RESUME'){
-            Log.error("HOTWORD_RESUME received from "+(sender!=null?sender.name:"unknown"))
-            Log.error("HOTWORD_RESUME timeout value = "+this.timeout)
+            console.log("HOTWORD_RESUME received from "+(sender!=null?sender.name:"unknown"))
+            console.log("HOTWORD_RESUME timeout value = "+this.timeout)
             if( this.timeout!=null){
-				Log.error("HOTWORD_RESUME clearing timeout handle")
+				console.log("HOTWORD_RESUME clearing timeout handle")
 				clearTimeout( this.timeout);
 				this.timeout=null;
             }
@@ -267,10 +267,10 @@ Module.register('MMM-VoiceCommander', {
         // did some other module request the mic?
         // this could also be a confirm using the mic from the other module
         } else if(notification === 'HOTWORD_PAUSE'){ 
-            Log.error("HOTWORD_PAUSE received from "+(sender!=null?sender.name:"unknown"))
-            Log.error("HOTWORD_PAUSE timeout value = "+this.timeout)
+            console.log("HOTWORD_PAUSE received from "+(sender!=null?sender.name:"unknown"))
+            console.log("HOTWORD_PAUSE timeout value = "+this.timeout)
             if( this.timeout!=null){
-				Log.error("HOTWORD_ PAUSE clearing timeout handle")
+				console.log("HOTWORD_ PAUSE clearing timeout handle")
 				clearTimeout( this.timeout);
 				this.timeout=null;
             }        
@@ -352,7 +352,13 @@ Module.register('MMM-VoiceCommander', {
 
 		if (notification === 'ACTIVATE_MONITOR') {
 			this.sendSocketNotification('DEACTIVATE_MONITOR');
-			}
+            }
+            
+//        if (notification === 'ALEXA_TOKEN_SET') {
+//                setTimeout(() => {
+//                     this.sendNotification('ALEXA_START_RECORDING', {});
+//                }, 500);
+//            }
 	},
 
 ////////////////////////////////// EOC /////////////////////////////////

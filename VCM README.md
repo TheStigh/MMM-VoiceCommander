@@ -1,8 +1,9 @@
+<p align="center"># MMM-VoiceCommander<p align="center">
 # MMM-VoiceCommander
 <p align="center">
    <img src="VCLogo.jpg" height="300">
 <p>
-![](VCLogo.jpg)
+
 
 ## What can it do?
 

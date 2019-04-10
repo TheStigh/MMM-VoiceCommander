@@ -1,12 +1,15 @@
-<font size="6"><p align="center">MMM-VoiceCommander<p align="center"></font>
-
 <p align="center">
    <img src="VCLogo.jpg" height="300">
 <p>
 
+# MMM-VoiceCommander
+
+## What is this module?
+This is a module for voice controlling a lot of elements of MagicMirror. It works as an offline voice controller where the MagicMirror does not need to be connected to Internet for VoiceCommander to work. Also, if you need a **HOTWORD** module to activate other online modules - this is it! It can activate either **Alexa** and **Google Assistant** using specific modules already available.
 
 ## What can it do?
 
+* 
 * Control other modules that use voice commands with a single microphone.
 * Built in motion detection for webcams.
 * Use hand gesture to mute/resume sound to issue new voice commands. (Requires cam)
@@ -32,23 +35,38 @@
 
 ## Tested On
 
-* HP Elite 8300 - Ubuntu 18.04 LTS
-* HP Elite HPEu - Ubuntu 16.04 LTS
-* HP G60 Laptop - Ubuntu 16.04 LTS
-* AMD64 - Ubuntu 16.04/18.04
-* Tinker Board S - TinkerOS 2.0.8
+### Running platforms
+* HP Elite 8300         - Ubuntu 18.04 LTS
+* HP Elite HPEu         - Ubuntu 16.04 LTS
+* HP G60 Laptop         - Ubuntu 16.04 LTS
+* AMD64                 - Ubuntu 16.04/18.04
+* Huawei Matebook Pro   - Ubuntu 16.04 LTS
+* Tinker Board S        - TinkerOS 2.0.8
+* Raspberry Pi 3b+      - Debian Stretch
+
+### Cameras for Motion Detection
 * USB Logitech C920
 * Several integrated laptop cams
 
 ## Installation and requirements
 
-* `git clone https://github.com/thestigh/MMM-VoiceCommander` into the `~/MagicMirror/modules` directory.
+Start by doing the commands below to make the initial installation: 
 
-* `cd MMM-VoiceCommander`
+```
+`git clone https://github.com/thestigh/MMM-VoiceCommander` into the `~/MagicMirror/modules` directory.
+`cd MMM-VoiceCommander`
+`cd installers`
+`bash dependencies.sh`
+```
 
-* `cd installers`
+After install you need to check your audio setup, as this module also relies on **arecord/aplay**.
+From your home directory, run command:
 
-* `bash dependencies.sh`
+> sudo nano ~/.asoundrc
+
+If it is empty, copy following code to the editor, then make sure you edit the **hw:** according to your own hardware configuration (you get the output at the end of installerscript you just ran). Or you can run the command over again to see the outputs by running:
+
+> cat /proc/asound/cards
 
 
 ## Config.js entry and options

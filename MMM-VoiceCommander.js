@@ -68,7 +68,7 @@ Module.register('MMM-VoiceCommander', {
         speed: 1000,                                // transition speed between show/no-show/show in milliseconds
         activateMotion: false,                      // if true, webcam will be used to activate/deactivate MM on movement
         onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
-        onOnlyHotword: 'ALEXA',                     // If onlyHotword, what Assistant to start, 'GOOGLE' or 'ALEXA'
+        onOnlyHotword: 'AMAZON',                   // If onlyHotword, what Assistant to start, 'GOOGLE' (Assistant) or 'AMAZON' (Alexa)
         timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
 		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds, default 1 second
         scoreThreshold: 20,                         // threshold to assume motion/no-motion -> se console log for score

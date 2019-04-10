@@ -401,7 +401,7 @@ if (/(GO)/g.test(data) && /(ASSISTANT)/g.test(data)) {
             if(this.ps.isListening())
             this.ps.stop();
             console.log("sending ALEXA socket notification, have released mic");  
-            this.sendSocketNotification('SUSPENDED',{ASSISTANT:'ALEXA'});
+            this.sendSocketNotification('SUSPENDED',{ASSISTANT:'AMAZON'});
 
 ////////////////////////////////// EOC /////////////////////////////////
 

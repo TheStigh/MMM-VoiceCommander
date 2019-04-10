@@ -1,5 +1,5 @@
-<p align="center"># MMM-VoiceCommander<p align="center">
-# MMM-VoiceCommander
+<font size="6"><p align="center">MMM-VoiceCommander<p align="center"></font>
+
 <p align="center">
    <img src="VCLogo.jpg" height="300">
 <p>

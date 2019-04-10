@@ -410,6 +410,7 @@ Module.register('MMM-VoiceCommander', {
                 if (payload.ASSISTANT === 'GOOGLE') {
                     this.sendNotification('ASSISTANT_ACTIVATE', {profile:'default'});
                 } else {
+                    console.log('<<<<<<<<<<<<<<< : Noti AMAZON');
                     this.sendNotification('AMAZON_ACTIVATE',{});
                 }
 ////////////////////////////////// EOC /////////////////////////////////			

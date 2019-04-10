@@ -4,23 +4,38 @@
 
 # MMM-VoiceCommander
 
-### What is VoiceCommander?
+
+### WHAT IS VOICECOMMANDER?
 This is a module for voice controlling a lot of elements of MagicMirror. It works as an offline voice controller where the MagicMirror does not need to be connected to Internet for VoiceCommander to work. Also, if you need a **HOTWORD** module to activate other online modules - this is it! It can activate either **Alexa** and **Google Assistant** using specific modules already available.
 
-### What can it do?
+
+
+### WHAT CAN IT DO?
 > Used as hotword only to activate either Google Assistant or Amazon Alexa
+
 > Used as hotword to activate both Google Assistant and Amazon running at the same time
+
 > Control other modules that use voice commands with a single microphone
+
 > Built in `Motion Detection` for webcams to activate/de-activate upon motion/timout
+
 > Use hand gesture to mute/resume sound (to issue new voice commands if speaker is busy - requires webcam)
+
 > Take Selfies!  (Requires webcam and - https://github.com/alexyak/camera)
+
 > Built in support for custom sound files
+
 > Hide and show pages of modules
+
 > Hide and show individual modules - ***No modification of other modules necessary!***
+
 > Offline by default - no need for internet to issue commands
 
+> Add your own sentences and custom commands `(**TODO**: Create instruction for json files)`
 
-### Tested On following hardware platforms
+
+
+### TESTED ON FOLLOWING HARDWARE PLATFORMS
 
 | Hardware Platform    |   Operating System   | Notes                                                                                                                                                                                                                                                                                             |
 | -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -31,20 +46,23 @@ This is a module for voice controlling a lot of elements of MagicMirror. It work
 | Intel NUC Celeron    | ✔  Ubuntu 16.04 LTS  | -                                                                                                                                                                                                                                                                                                 |
 | Tinker Board S       | ✔  TinkerOS 2.0.8    | -                                                                                                                                                                                                                                                                                                 |
 | Raspberry Pi 3b+     | ✔  Debian Stretch    | -                                                                                                                                                                                                                                                                                                 |
-| Odroid               | ✘                    | `Need somebody to test on Odroid`!                                                            |
-| Windows              | ✘                    | `Need somebody to test on Windows`!                                                            |
+| Odroid               | ✘                    | Need somebody to test on Odroid!                                                            |
+| Windows              | ✘                    | Need somebody to test on Windows!                                                            |
 
 
-### Tested cameras for Motion Detection
+
+### TESTED CAMERAS FOR MOTION DETECTION
 * USB Logitech C920
 * Several integrated laptop cams
 
 
-## Installation and requirements
+
+## INSTALLATION AND REQUIREMENTS
 
 Start by doing the commands below to make the initial installation: 
 
 > Perform the commands from ***~/MagicMirror/modules*** directory
+
 ```
 git clone https://github.com/thestigh/MMM-VoiceCommander
 cd MMM-VoiceCommander
@@ -54,8 +72,11 @@ bash dependencies.sh
 
 After installation you need to check your `audio setup`, as this module also relies on ***arecord/aplay***.
 From your home directory, run command:
+
 > sudo nano ~/.asoundrc
+
 If it is empty, copy following code to the editor (values might need to be changed):
+
 ```
 pcm.!default{
   type asym
@@ -78,10 +99,11 @@ ctl.!default{
 
 Then make sure you set the **hw:** and the  **card** vales according to your own hardware configuration (you get the output at the end of installerscript you just ran). Or you can run the command over again to see the outputs by running `cat /proc/asound/cards`
 
-Save and close nano editor.
+> ***Save and close** nano editor
 
 
-## Config.js entry and options
+## CONFIG.JS ENTRIES AND OPTIONS
+
 ```
 {
     disabled: false,
@@ -93,7 +115,7 @@ Save and close nano editor.
         keyword: 'HELLO LUCY',                      // keyword to activate listening for a command/sentence
         debug: false,                               // get debug information in console
         standByMethod: 'DPMS',                      // 'DPMS' = anything else than RPi or 'PI'
-		sounds: ["female_hi.wav"],                  // welcomesound at startup, add several for a random choice of welcome sound
+        sounds: ["female_hi.wav"],                  // welcomesound at startup, add several for a random choice of welcome sound
         startHideAll: true,                         // if true, all modules start as hidden
         microphone: 'default',                      // Do NOT change, is read from ~/.asoundrc
         speed: 1000,                                // transition speed between show/no-show/show in milliseconds
@@ -101,27 +123,28 @@ Save and close nano editor.
         onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
         onOnlyHotword: 'AMAZON',                    // If onlyHotword, what Assistant to start, 'GOOGLE' or 'AMAZON'
         timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
-		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds
+        captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds
         scoreThreshold: 20,                         // threshold to assume motion/no-motion -> se console log for score
         timeoutMotion: 120000,                      // timeout with no motion until sleep monitor, in milliseconds
         muteThreshold: 2000,                        // motion level to activate mute of speaker
         muteVolumeLevel: 1,                         // what volume level to set speaker on activated mute
         muteNormalLevel: 50,                        // set normal volume level on startup
         muteTimer: 10000,                           // how long in milliseconds to mute the speaker
-		mainPageModules: ["MMM-VoiceCommander"],    // default modules to show on page one/startup
+        mainPageModules: ["MMM-VoiceCommander"],    // default modules to show on page one/startup
         pageTwoModules: [],                         // modules to show on page two
-		pageThreeModules: [],                       // modules to show on page two
-		pageFourModules: [],                        // modules to show on page two
-		pageFiveModules: [],                        // modules to show on page two
-		pageSixModules: [],                         // modules to show on page two
-		pageSevenModules: [],                       // modules to show on page two
-		pageEightModules: [],                       // modules to show on page two
-		pageNineModules: [],                        // modules to show on page two
-		pageTenModules: []                          // modules to show on page two
+        pageThreeModules: [],                       // modules to show on page two
+        pageFourModules: [],                        // modules to show on page two
+        pageFiveModules: [],                        // modules to show on page two
+        pageSixModules: [],                         // modules to show on page two
+        pageSevenModules: [],                       // modules to show on page two
+        pageEightModules: [],                       // modules to show on page two
+        pageNineModules: [],                        // modules to show on page two
+        pageTenModules: []                          // modules to show on page two
     },
 ```
 
-## Default modules and their commands
+
+## DEFAULT MODULES AND THEIR COMMANDS
 
 ### [MMM-VoiceCommander](https://github.com/TheStigh/MMM-VoiceCommander)
 * Hello Lucy (Replace Hello Lucy with your keyword)
@@ -151,7 +174,7 @@ Save and close nano editor.
 * Hide Camera   - relies on (https://github.com/alexyak/camera)
 * Selfie        - relies on (https://github.com/alexyak/camera)
                        
-#### Following requires installation of [MMM-WindyV2](https://github.com/TheStigh/MMM-WindyV2)
+#### FOLLOWING REQUIRES INSTALLATION OF [MMM-WindyV2](https://github.com/TheStigh/MMM-WindyV2)
 * Hide Wind
 * Show Wind
 * Zoom In
@@ -168,15 +191,15 @@ Save and close nano editor.
 * Play Animation
 * Cancel Animation
 
-### Control Google Assistant [MMM-AssistantMk2](https://github.com/eouia/MMM-AssistantMk2)
+### CONTROL Google Assistant [MMM-AssistantMk2](https://github.com/eouia/MMM-AssistantMk2)
 > Click [here](https://github.com/eouia/MMM-AssistantMk2) for the repo and documentation.
 
 
-### Control Amazon Alexa [MMM-Alexa](https://github.com/thestigh/MMM-Alexa)
+### CONTROL Amazon Alexa [MMM-Alexa](https://github.com/thestigh/MMM-Alexa)
 > Click [here](https://github.com/thestigh/MMM-Alexa) for the repo and documentation.
 
 
-### Hide/Show Supported Modules
+### HIDE/SHOW SUPPORTED MODULES
 * [MMM-AfterShip](https://github.com/mykle1/MMM-AfterShip)          - Hide/Show Shipping
 * [MMM-ATM](https://github.com/mykle1/MMM-ATM)                      - Hide/Show Trivia
 * [MMM-BMW-DS](https://github.com/mykle1/MMM-BMW-DS)                - Hide/Show Weather
@@ -214,7 +237,7 @@ Save and close nano editor.
 * [MMM-Glock](https://github.com/cowboysdude/MMM-Glock)             - Hide/Show Glock
 
 
-### MagicMirror Default modules
+### MagicMirror DEFAULT MODULES
 * calendar                                                          - Hide/Show Calendar
 * clock                                                             - Hide/Show Clock
 * compliments                                                       - Hide/Show Compliments
@@ -223,23 +246,23 @@ Save and close nano editor.
 * weatherforecast                                                   - Hide/Show Forecast
 
 
-## Any module and custom commands added by request
+## ANY MODULE AND CUSTOM COMMANDS ADDED BY REQUEST
 > Simply post your request in the MMM-VoiceCommander 'issues'. * Name the module and the custom command you would like.
 
 
-## Troubleshooting issues with MotionDetection
+## TROUBLESHOOTING AND ISSUES WITH MOTION DETECTION
 Accessing your (web)cam requires to have the client run on **localhost** or a **HTTPS** host.
 This is due to new requirements in Chrome for 'getUserMedia'. The default value in your
 MagicMirror config.js is already localhost so most users shouldn't be affected.
 
 
-## Inspirations
+## INSPIRATIONS
 * MMM-voice by Strawberry 3.141
 * motiondetector, camera by alexyak
 * Hello-Lucy by Mykle1
 
 
-## Thanks go to . . .
+## SPECIAL THANKS GO TO . . .
 > **@sdetweil** added crucial microphone release functionality to the module
 > **@Mykle1's** original pages and hide/show commands were improved upon and custom sound support
 > **@cowboysdude** for his array magic and Skype consultations

@@ -274,13 +274,12 @@ module.exports = NodeHelper.create({
                 this.sendSocketNotification('DEBUG', data);
             }
             if (data.includes(this.config.keyword) || this.listening) {
-// if hotword only, start prosess med å gå online med en gang
-// er dette rett plass å sette inn?
+            // if hotword only, go directly online
               if (this.config.onlyHotword) { 
                   if(this.ps.isListening())
                       this.ps.stop();
                   console.log("sending socket notification, have released mic");  
-                  this.sendSocketNotification('SUSPENDED');
+                  this.sendSocketNotification('SUSPENDED', {ASSISTANT:this.config.onOnlyHotword});
                 } 
                 this.listening = true;
 				this.sendSocketNotification('LISTENING');
@@ -392,12 +391,17 @@ module.exports = NodeHelper.create({
 //////////////// 	and create timer and checking		////////////////
 ////////////////////////////////////////////////////////////////////////
  
-if (/(GO)/g.test(data) && /(ONLINE)/g.test(data)) {
-        //} else if (/(GO)/g.test(data) && /(ONLINE)/g.test(data)) { 
+if (/(GO)/g.test(data) && /(ASSISTANT)/g.test(data)) {
             if(this.ps.isListening())
               this.ps.stop();
-            console.log("sending socket notification, have released mic");  
-            this.sendSocketNotification('SUSPENDED');
+            console.log("sending ASSISTANT socket notification, have released mic");  
+            this.sendSocketNotification('SUSPENDED', {ASSISTANT:'GOOGLE'});
+
+} else if (/(GO)/g.test(data) && /(ALEXA)/g.test(data)) {
+            if(this.ps.isListening())
+            this.ps.stop();
+            console.log("sending ALEXA socket notification, have released mic");  
+            this.sendSocketNotification('SUSPENDED',{ASSISTANT:'ALEXA'});
 
 ////////////////////////////////// EOC /////////////////////////////////
 

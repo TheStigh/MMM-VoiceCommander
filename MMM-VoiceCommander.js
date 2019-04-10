@@ -68,6 +68,7 @@ Module.register('MMM-VoiceCommander', {
         speed: 1000,                                // transition speed between show/no-show/show in milliseconds
         activateMotion: false,                      // if true, webcam will be used to activate/deactivate MM on movement
         onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
+        onOnlyHotword: 'ALEXA',                     // If onlyHotword, what Assistant to start, 'GOOGLE' or 'ALEXA'
         timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
 		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds, default 1 second
         scoreThreshold: 20,                         // threshold to assume motion/no-motion -> se console log for score
@@ -353,19 +354,12 @@ Module.register('MMM-VoiceCommander', {
 		if (notification === 'ACTIVATE_MONITOR') {
 			this.sendSocketNotification('DEACTIVATE_MONITOR');
             }
-            
-//        if (notification === 'ALEXA_TOKEN_SET') {
-//                setTimeout(() => {
-//                     this.sendNotification('ALEXA_START_RECORDING', {});
-//                }, 500);
-//            }
-	},
+ 	},
 
 ////////////////////////////////// EOC /////////////////////////////////
 
     socketNotificationReceived(notification, payload) {
         if (notification === 'READY') {
-            //console.log(MMM-AssistantMk2.config.startChime);
             this.icon = 'fa-microphone';
             this.mode = this.translate('NO_MODE')+this.config.keyword;
             this.pulsing = false;
@@ -409,11 +403,15 @@ Module.register('MMM-VoiceCommander', {
 
 		// tell other module to resume voice detection
             this.timeout=setTimeout(() => {                        // dummy code here for response from other module when done
-                    Log.log("mic suspend timeout,  sending socket notification to RESUME_LISTENING")
+                    console.log("mic suspend timeout, sending socket notification to RESUME_LISTENING")
                     this.notificationReceived('HOTWORD_RESUME');
-                }, this.config.timeoutSeconds*1000);         
-            this.sendNotification('ASSISTANT_ACTIVATE', {profile:'default'});
-
+                }, this.config.timeoutSeconds*1000);
+                        
+                if (payload.ASSISTANT === 'GOOGLE') {
+                    this.sendNotification('ASSISTANT_ACTIVATE', {profile:'default'});
+                } else {
+                    this.sendNotification('AMAZON_ACTIVATE',{});
+                }
 ////////////////////////////////// EOC /////////////////////////////////			
 
 		} else if (notification === 'HIDE_MODULES') {

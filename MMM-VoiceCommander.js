@@ -64,11 +64,11 @@ Module.register('MMM-VoiceCommander', {
         standByMethod: 'DPMS',                      // 'DPMS' = anything else than RPi or 'PI'
 		sounds: ["female_hi.wav"],                  // welcomesound at startup, add several for a random choice of welcome sound
         startHideAll: true,                         // if true, all modules start as hidden
-        microphone: 0,                              // Please set correct microphone from the cat output after installation
+        microphone: 'default',                      // Do NOT change, is read from ~/.asoundrc
         speed: 1000,                                // transition speed between show/no-show/show in milliseconds
         activateMotion: false,                      // if true, webcam will be used to activate/deactivate MM on movement
         onlyHotword: false,                         // TBA - Hotword only to activate external module by sendNotification
-        onOnlyHotword: 'AMAZON',                   // If onlyHotword, what Assistant to start, 'GOOGLE' (Assistant) or 'AMAZON' (Alexa)
+        onOnlyHotword: 'AMAZON',                 // If onlyHotword, who to start, 'GOOGLE' (Assistant) or 'AMAZON' (Alexa)
         timeoutSeconds: 10,                         // seconds to wait for external module to confirm control of mic
 		captureIntervalTime: 1000,                  // how often should the webcam check for motion, in milliseconds, default 1 second
         scoreThreshold: 20,                         // threshold to assume motion/no-motion -> se console log for score
@@ -409,9 +409,11 @@ Module.register('MMM-VoiceCommander', {
                         
                 if (payload.ASSISTANT === 'GOOGLE') {
                     this.sendNotification('ASSISTANT_ACTIVATE', {profile:'default'});
-                } else {
+                    payload.ASSISTANT = null;
+                } else if (payload.ASSISTANT === 'AMAZON') {
                     console.log('<<<<<<<<<<<<<<< : Noti AMAZON');
                     this.sendNotification('AMAZON_ACTIVATE',{});
+                    payload.ASSISTANT = null;
                 }
 ////////////////////////////////// EOC /////////////////////////////////			
 

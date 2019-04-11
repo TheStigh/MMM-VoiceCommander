@@ -106,6 +106,9 @@
   {"wordOne":"HIDE","wordTwo":"FORECAST","wordThree":"","wordFour":"","toShow":"false","moduleName":"weatherforecast","sendNoti":""},
   {"wordOne":"SHOW","wordTwo":"CURRENT","wordThree":"WEATHER","wordFour":"","toShow":"true","moduleName":"currentweather","sendNoti":""},
   {"wordOne":"HIDE","wordTwo":"CURRENT","wordThree":"WEATHER","wordFour":"","toShow":"false","moduleName":"currentweather","sendNoti":""},
+  {"wordOne":"SHOW","wordTwo":"ALEXA","wordThree":"","wordFour":"","toShow":"true","moduleName":"MMM-Alexa","sendNoti":""},
+  {"wordOne":"HIDE","wordTwo":"ALEXA","wordThree":"","wordFour":"","toShow":"false","moduleName":"MMM-Alexa","sendNoti":""},
+
 
   {"wordOne":"SHOW","wordTwo":"WEATHER","wordThree":"","wordFour":"","toShow":"true","moduleName":"MMM-BMW-DS","sendNoti":""},
   {"wordOne":"HIDE","wordTwo":"WEATHER","wordThree":"","wordFour":"","toShow":"false","moduleName":"MMM-BMW-DS","sendNoti":""},

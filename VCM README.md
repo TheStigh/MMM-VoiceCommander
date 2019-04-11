@@ -11,27 +11,17 @@ This is a module for voice controlling a lot of elements of MagicMirror. It work
 
 
 #### WHAT CAN IT DO?
-✔ Used as hotword only to activate either Google Assistant or Amazon Alexa
-
-✔ Used as hotword to activate both Google Assistant and Amazon running at the same time
-
-✔ Control other modules that use voice commands with a single microphone
-
-✔ Built in `Motion Detection` for webcams to activate/de-activate upon motion/timout
-
-✔ Use hand gesture to mute/resume sound (to issue new voice commands if speaker is busy - requires webcam)
-
-✔ Take Selfies!  (requires webcam)
-
-✔ Built in support for custom sound files
-
-✔ Hide and show pages of modules
-
-✔ Hide and show individual modules - ***No modification of other modules necessary!***
-
-✔ Offline by default - no need for internet to issue commands
-
-✔ Add your own sentences and custom commands `(**TODO**: Create instruction for json files)`
+* Used as hotword only to activate either Google Assistant or Amazon Alexa
+* Used as hotword to activate both Google Assistant and Amazon running at the same time
+* Control other modules that use voice commands with a single microphone
+* Built in `Motion Detection` for webcams to activate/de-activate upon motion/timout
+* Use hand gesture to mute/resume sound (to issue new voice commands if speaker is busy - requires webcam)
+* Take Selfies!  (requires webcam)
+* Built in support for custom sound files
+* Hide and show pages of modules
+* Hide and show individual modules - ***No modification of other modules necessary!***
+* Offline by default - no need for internet to issue commands
+* Add your own sentences and custom commands `(**TODO**: Create instruction for json files)`
 
 * Here you will find the [webcam module](https://github.com/alexyak/camera) 
 
@@ -250,7 +240,8 @@ Then make sure you set the **hw:** and the  **card** vales according to your own
 
 
 ## ANY MODULE AND CUSTOM COMMANDS ADDED BY REQUEST
-> Simply post your request in the MMM-VoiceCommander 'issues'. * Name the module and the custom command you would like.
+> Simply post your request in the MMM-VoiceCommander 'issues'.
+> Name the module and the custom command you would like.
 
 
 ## TROUBLESHOOTING AND ISSUES WITH MOTION DETECTION
@@ -267,5 +258,7 @@ MagicMirror config.js is already localhost so most users shouldn't be affected.
 
 ## SPECIAL THANKS GO TO . . .
 > **@sdetweil** added crucial microphone release functionality to the module
+
 > **@Mykle1's** original pages and hide/show commands were improved upon and custom sound support
+
 > **@cowboysdude** for his array magic and Skype consultations

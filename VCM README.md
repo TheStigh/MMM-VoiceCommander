@@ -240,8 +240,8 @@ Then make sure you set the **hw:** and the  **card** vales according to your own
 
 
 ## ANY MODULE AND CUSTOM COMMANDS ADDED BY REQUEST
-> Simply post your request in the MMM-VoiceCommander 'issues'.
-> Name the module and the custom command you would like.
+* Simply post your request in the MMM-VoiceCommander 'issues'
+* Name the module and the custom command you would like
 
 
 ## TROUBLESHOOTING AND ISSUES WITH MOTION DETECTION

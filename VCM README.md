@@ -90,7 +90,7 @@ ctl.!default{
 
 > Do you want help to confiure or just deeper understanding *arecord*, [click here](https://github.com/thestigh/MMM-VoiceCommander/docs/arecordHelp.md)
 
-Then make sure you set the **hw:** and the  **card** vales according to your own hardware configuration (you get the output at the end of installerscript you just ran). Or you can run the command over again to see the outputs by running `cat /proc/asound/cards`
+Then make sure you set the **hw:** and the  **card** vales according to your own hardware configuration (you get the output at the end of installerscript you just ran) where hw:0,0 representt output and hw:1,0 represent input source. Or you can run the command over again to see the outputs by running `cat /proc/asound/cards`
 
 > ***Save and close*** nano editor
 
